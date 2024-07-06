@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            background-color: #e02323;
+        }
+        .container{
+            width: 40%;
+            min-width: 450px;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 30px;
+            padding: 30px 40px;
+        }
+        #newtask{
+            position: relative;
+            background-color: #ffffff;
+            padding: 30px 20px;
+            border-radius: 10px;
+        }
+        #newtask input{
+            width: 70%;
+            height: 45px;
+            font-size: 15px;
+            border: 2px solid #9b9c9c;
+            padding: 12px;
+            color: #111111;
+            position: relative;
+            border-radius: 5px;
+        }
+        #newtask input:focus{
+            outline: none;
+            border-color: #161516;
+        }
+        #newtask button{
+            position: relative;
+            float: right;
+            width: 20%;
+            height: 45px;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #00f181;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            outline: none;
+        }
+        #tasks{
+            background-color: #ffffff;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-radius: 9px;
+            width: 100%;
+            position: relative;
+        }
+        .task{
+            background-color: #5148d8f6;
+            height: 40px;
+            padding: 5px 10px;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .task button{
+            background-color: #e20909;
+            color: #0c0b0b;
+            height: 110%;
+            width: 40px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="newtask">
+            <input type="text" placeholder="Enter text..">
+            <button id="push">Add</button>
+        </div>
+        <div id="tasks"></div>
+    </div>
+</body>
+<script>
+    document.querySelector('#push').onclick = function(){
+        if(document.querySelector('#newtask input').value.length == 0){
+            alert("Please Enter a text")
+        }
+        else{document.querySelector('#tasks').innerHTML += `<div class="task"><span id="taskname">
+            ${document.querySelector('#newtask input').value}
+            </span><button class="delete"><i class="far fa-trash-alt"></i></button></div>`;
+
+    var current_tasks = document.querySelectorAll(".delete");
+        for(var i=0; i<current_tasks.length; i++){current_tasks[i].onclick = function(){this.parentNode.remove();}}
+
+    var tasks = document.querySelectorAll(".task");
+        for(var i=0; i<tasks.length; i++){tasks[i].onclick = function(){this.classList.toggle('completed');}}
+
+    document.querySelector("#newtask input").value = "";
+        }
+    }
+</script>
+</html>
